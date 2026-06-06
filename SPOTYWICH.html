@@ -1,0 +1,1148 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SPOTYWICH</title>
+  <link rel="icon" href="Images/Logo.png" type="image/png">
+
+  <link href="https://fonts.google.com/specimen/Arimo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+		body {background-color: #2b2b2b;}
+	
+  </style>
+
+</head>
+
+	<body>
+		
+		<header>
+			<link rel="stylesheet" href="Styles/stylebar.css"/>
+			<div class="logo-container">
+				<h2 class="Logo">SPOTYWISH</h2>
+				<img src="Images/Logo gro.png" alt="Logo" class="logo-img">
+			</div>
+			<nav class="navigation">
+				<a href="SPOTYWICH.html">Accueil</a>
+				<a href="Musique.html">Musique</a>
+				<a href="Radio.html">Radio</a>
+				<a href="A Propos.html">A propos</a>
+				<a href="#">Contact</a>
+				<a href="#">Demande</a>
+				<button class="btnLogin-popup">Se connecter</button>
+			</nav>
+</header>
+
+		<div class="wrapper">
+			<span class="icon-close">
+				<ion-icon name="close-outline"></ion-icon>
+			</span>
+			
+			<div class="form-box login">
+				<h2>Connexion</h2>
+				<form action="#">
+					<div class="input-box">
+						<span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+						<input type="email" required>
+						<label>Email</label>
+					</div>
+					<div class="input-box">
+						<span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+						<input type="password" required>
+						<label>Mot de passe</label>
+					</div>
+					<div class="remember-forgot">
+						<label><input type="checkbox"> Se souvenir de moi</label>
+						<a href="#">Mot de passe oublié ?</a>
+					</div>
+					<button type="submit" class="btn">Connexion</button>
+					<div class="login-register">
+						<p>Vous n'avez pas de compte ? <a href="#" class="register-link">S'inscrire</a></p>
+					</div>
+				</form>
+			</div>
+
+						<div class="form-box register">
+				<h2>Inscription</h2>
+				<form action="#">
+					<div class="input-box">
+						<span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+						<input type="text" required>
+						<label>Nom d'utilisateur</label>
+					</div>
+					<div class="input-box">
+						<span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+						<input type="email" required>
+						<label>Email</label>
+					</div>
+					<div class="input-box">
+						<span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+						<input type="password" required>
+						<label>Mot de passe</label>
+					</div>
+					<div class="remember-forgot">
+						<label><input type="checkbox"> J'accepte les conditions d'utilisation</label>
+					</div>
+					<button type="submit" class="btn">Inscription</button>
+					<div class="login-register">
+						<p>Vous avez déjà un compte ? <a href="#" class="login-link">Se connecter</a></p>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+		<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	
+	</body>
+
+	<body>
+		<link rel="stylesheet" href="Styles/StyleRadio.css">
+		<div id="radio-widget">
+
+    <!-- NOTIFICATION -->
+
+    <div id="radio-notification">
+
+        <img
+            id="notif-cover"
+            src=""
+            alt=""
+        >
+
+        <div class="notif-text">
+
+            <div id="notif-title"></div>
+
+            <div id="notif-artist"></div>
+
+        </div>
+
+    </div>
+
+    <!-- ONDES -->
+
+    <div class="radio-ripple"></div>
+
+    <!-- PLAYER -->
+
+    <div id="radio-player">
+
+       <div id="radio-mini">
+
+    		<div class="spotify-wave">
+       		 	<span></span>
+        		<span></span>
+        		<span></span>
+        		<span></span>
+    		</div>
+
+		</div>
+
+        <div id="radio-controls">
+
+           <div class="radio-header">
+
+    			<div class="radio-info">
+
+    				<span class="radio-name">
+        			Radio
+    				</span>
+
+    				<span id="radio-track">
+        			Aucun titre
+    				</span>
+
+    				<span id="radio-remaining">
+        			0:00
+    				</span>
+
+				</div>
+
+    		<div class="radio-buttons">
+
+    			<button id="radio-prev">
+        			⏮
+    			</button>
+
+    			<button id="radio-toggle">
+        			⏸
+    			</button>
+
+				<button id="radio-next">
+					⏭
+				</button>
+
+			</div>
+
+		</div>
+
+            <div class="radio-volume">
+
+                <span>🔊</span>
+
+                <input
+                    type="range"
+                    id="volume-slider"
+                    min="0"
+                    max="100"
+                    value="80"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<audio id="radio-audio"></audio>
+
+<div id="radio-track-container">
+    <div id="radio-track">
+        Aucun titre
+    </div>
+</div>
+
+	<script>
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const audio = document.getElementById("radio-audio");
+
+const toggle = document.getElementById("radio-toggle");
+const nextButton = document.getElementById("radio-next");
+const prevButton = document.getElementById("radio-prev");
+
+const volumeSlider =
+document.getElementById("volume-slider");
+
+const trackTitle =
+document.getElementById("radio-track");
+
+const remainingTime =
+document.getElementById("radio-remaining");
+
+/* ==========================================
+   PLAYLIST
+========================================== */
+
+const playlist = [
+
+{
+    title:"One More Time",
+    artist:"Daft Punk",
+    cover:"Covers/Daft1.png",
+    file:"Musique/Dafttt.mp3"
+},
+
+{
+    title:"Bad",
+    artist:"Michael Jackson",
+    cover:"covers/Bad.png",
+    file:"Musique/Bad.mp3"
+},
+
+{
+    title:"Another Day Of Sun",
+    artist:"La La Land",
+    cover:"covers/La La Land.png",
+    file:"Musique/Another Day Of Sun.mp3"
+},
+
+{
+    title:"Dynamite",
+    artist:"Taio Cruz",
+    cover:"covers/Taio Cruz.png",
+    file:"Musique/Dynamite.mp3"
+},
+
+{
+    title:"Stereo Hearts",
+    artist:"Gym Class Heroes, Adam Levine",
+    cover:"covers/Stereo.png",
+    file:"Musique/Stereo Hearts.mp3"
+},
+
+{
+    title:"Evrytime We Touch",
+    artist:"Cascada",
+    cover:"covers/Touch.png",
+    file:"Musique/Everytime We Touch.mp3"
+},
+
+{
+    title:"Stereo Love",
+    artist:"Edxard Maya, Vika Jigulina",
+    cover:"covers/Stereo Love.png",
+    file:"Musique/Stereo Love.mp3"
+}
+
+];
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
+let currentTrack = -1;
+let radioStarted = false;
+
+/* ==========================================
+   VOLUME
+========================================== */
+
+audio.volume = 0.8;
+
+volumeSlider.addEventListener(
+    "input",
+    () => {
+
+        const value =
+        volumeSlider.value;
+
+        audio.volume =
+        value / 100;
+
+        volumeSlider.style.background =
+        `linear-gradient(
+            to right,
+            #1DB954 ${value}%,
+            #333 ${value}%
+        )`;
+
+    }
+);
+
+/* ==========================================
+   NOTIFICATION
+========================================== */
+
+let notifTimeout;
+
+function showNotification(track){
+
+    const notif =
+    document.getElementById(
+        "radio-notification"
+    );
+
+    document.getElementById(
+        "notif-cover"
+    ).src = track.cover;
+
+    document.getElementById(
+        "notif-title"
+    ).textContent = track.title;
+
+    document.getElementById(
+        "notif-artist"
+    ).textContent = track.artist;
+
+    clearTimeout(notifTimeout);
+
+    notif.classList.add("show");
+
+    notifTimeout =
+    setTimeout(() => {
+
+        notif.classList.remove(
+            "show"
+        );
+
+    },10000);
+
+}
+
+/* ==========================================
+   TITRE
+========================================== */
+
+function updateTrackTitle(title){
+
+    if(trackTitle){
+
+        trackTitle.textContent =
+        title;
+
+    }
+
+}
+
+/* ==========================================
+   TEMPS RESTANT
+========================================== */
+
+audio.addEventListener(
+    "timeupdate",
+    updateRemainingTime
+);
+
+function updateRemainingTime(){
+
+    if(
+        !remainingTime ||
+        isNaN(audio.duration)
+    ){
+        return;
+    }
+
+    const remaining =
+    audio.duration -
+    audio.currentTime;
+
+    const minutes =
+    Math.floor(
+        remaining / 60
+    );
+
+    const seconds =
+    Math.floor(
+        remaining % 60
+    );
+
+    remainingTime.textContent =
+    `${minutes}:${
+        seconds
+        .toString()
+        .padStart(2,"0")
+    }`;
+
+}
+
+/* ==========================================
+   CHARGEMENT MUSIQUE
+========================================== */
+
+function loadTrack(index){
+
+    currentTrack = index;
+
+    const track =
+    playlist[index];
+
+    audio.src =
+    track.file;
+
+    updateTrackTitle(
+        track.title
+    );
+
+    return track;
+}
+
+/* ==========================================
+   LECTURE ALEATOIRE
+========================================== */
+
+function playRandomTrack(){
+
+    let index;
+
+    do{
+
+        index =
+        Math.floor(
+            Math.random() *
+            playlist.length
+        );
+
+    }
+    while(
+        index === currentTrack &&
+        playlist.length > 1
+    );
+
+    const track =
+    loadTrack(index);
+
+    audio.play()
+    .then(() => {
+
+        showNotification(track);
+
+        toggle.textContent =
+        "⏸";
+
+    })
+    .catch(console.error);
+
+}
+
+/* ==========================================
+   SUIVANTE
+========================================== */
+
+function nextTrack(){
+
+    let index =
+    currentTrack + 1;
+
+    if(
+        index >=
+        playlist.length
+    ){
+        index = 0;
+    }
+
+    const track =
+    loadTrack(index);
+
+    audio.play();
+
+    showNotification(track);
+
+    toggle.textContent =
+    "⏸";
+}
+
+/* ==========================================
+   PRECEDENTE
+========================================== */
+
+function previousTrack(){
+
+    let index =
+    currentTrack - 1;
+
+    if(
+        index < 0
+    ){
+        index =
+        playlist.length - 1;
+    }
+
+    const track =
+    loadTrack(index);
+
+    audio.play();
+
+    showNotification(track);
+
+    toggle.textContent =
+    "⏸";
+}
+
+/* ==========================================
+   PLAY / PAUSE
+========================================== */
+
+toggle.addEventListener(
+    "click",
+    () => {
+
+        if(!radioStarted){
+
+            radioStarted = true;
+
+            playRandomTrack();
+
+            return;
+        }
+
+        if(audio.paused){
+
+            audio.play();
+
+            toggle.textContent =
+            "⏸";
+
+        }
+        else{
+
+            audio.pause();
+
+            toggle.textContent =
+            "▶";
+
+        }
+
+    }
+);
+
+/* ==========================================
+   BOUTONS
+========================================== */
+
+nextButton.addEventListener(
+    "click",
+    nextTrack
+);
+
+prevButton.addEventListener(
+    "click",
+    previousTrack
+);
+
+/* ==========================================
+   FIN DE MUSIQUE
+========================================== */
+
+audio.addEventListener(
+    "ended",
+    playRandomTrack
+);
+
+/* ==========================================
+   ETAT INITIAL
+========================================== */
+
+toggle.textContent = "▶";
+
+updateTrackTitle(
+    "Aucune musique"
+);
+
+if(remainingTime){
+
+    remainingTime.textContent =
+    "0:00";
+
+}
+
+	</script>
+	</body>
+	
+	<body><br><br><br>
+		<link rel="stylesheet" href="Styles/Style1.css"/>
+		<section class="hero">
+			<div class="hero-text">
+				<h1>1. INFORMATION</h1>
+				<h2>À propos de Spotywich</h2>
+
+				<p>
+				Spotywich est un site créé avant tout pour le divertissement et l’humour.
+				Son objectif principal n’est pas d’être une plateforme officielle,
+				mais plutôt un espace créatif destiné à faire sourire.
+				</p>
+
+				<p>
+				Le site est privé, non autorisé à la mise en ligne officielle
+				et protégé par les droits d’auteur de son créateur.
+				Toute reproduction ou diffusion est interdite.
+				</p>
+
+				<a href="#" class="hero-btn">Lire Plus</a>
+			</div>
+
+			<div class="hero-image">
+				<img id="hero-slider" src="Images/Punk.png" alt="Personnage">
+			</div>
+		</section>
+	
+	</body>
+	
+	<body>
+		<link rel="stylesheet" href="Styles/Style2.css"/>
+			<section class="hero">
+
+				<div class="hero-image">
+					<img src="Images/Fred.png" alt="Daft Punk">
+				</div>
+
+				<div class="hero-text">
+					<h1>2. DEMANDE</h1>
+					<h2>Accès aux musiques de créateurs spéciaux</h2>
+
+					<p>
+					Certaines musiques présentes dans l’univers de Spotywich sont issues de créateurs spéciaux et ne sont pas accessibles librement au public.
+					Ces contenus sont proposés dans un cadre privé et restent réservés à des personnes autorisées.
+					</p>
+
+					<p>
+					Toute demande doit être faite de manière claire et respectueuse, en précisant votre identité ainsi que la raison de votre requête.
+					Chaque demande sera étudiée individuellement, et une réponse pourra être apportée selon les conditions définies par le créateur.
+					Aucune diffusion, reproduction ou utilisation des musiques concernées n’est autorisée sans accord explicite préalable.
+					Pour toute demande officielle concernant les musiques de créateurs spéciaux, merci d’envoyer un email à l’adresse suivante : <mark><b><i>redphoenix3300@gmail.com</b></i></mark> .<br>
+					</p>
+
+					<a href="#" class="hero-btn">Faire Une Demande</a>
+				</div>
+
+			</section>
+
+	</body>
+	
+	<body>
+	
+		<link rel="stylesheet" href="Styles/Style3.css"/>
+		
+		<section class="hero">
+			<div class="hero-text">
+				<h1>3. DROIT D'AUTEUR</h1>
+				<h2>Information importante concernant les droits d’auteur</h2>
+
+				<p>
+				 Le site Spotywich est un projet privé et expérimental réalisé dans un but uniquement récréatif.
+				 Il est important de préciser que nous ne détenons aucun droit d’auteur sur les musiques, noms d’artistes, images ou contenus mentionnés sur cette plateforme.
+				 Les éléments présentés sont utilisés à titre informatif, illustratif ou humoristique dans un cadre strictement non commercial.
+				 En raison de l’absence de droits officiels sur ces contenus, le site ne peut en aucun cas être rendu public ou diffusé de manière officielle.
+				 Toute publication ouverte au grand public nécessiterait des autorisations légales préalables ainsi que l’acquisition des licences appropriées auprès des ayants droit concernés.
+				 À ce jour, ces autorisations ne sont ni demandées ni obtenues.
+				</p>
+
+				<p>
+				Spotywich ne prétend pas représenter, remplacer ou concurrencer les artistes, labels ou plateformes existantes.
+				Le projet n’a aucune vocation commerciale et ne génère aucun revenu.
+				Il s’agit d’un concept créatif privé destiné à un usage limité.
+				Par conséquent, le site doit rester dans un cadre restreint et ne peut être partagé, publié ou exploité publiquement.
+				Merci de respecter les droits des créateurs et le caractère privé du projet.
+				</p>
+
+				<a href="#" class="hero-btn">Lire Plus</a>
+			</div>
+
+			<div class="hero-image">
+				<img id="hero-slider" src="Images/Sabrinaa.png" alt="Personnage">
+			</div>
+		</section>
+	
+	</body>
+	
+	<body>
+
+		<link rel="stylesheet" href="Styles/StyleArt.css"/>
+
+		<section class="hero">
+			<div class="hero-text">
+				<h1>4. ARTISTES DU MOMENT</h1>
+			</div>
+		</section>
+	
+	</body>
+	
+	<body><br>
+	
+		<link rel="stylesheet" href="Styles/Card1.css"/>
+
+			<div class="grid">
+
+				<div class="card queen">
+					<img src="Images/Queen.png">
+					<h2>Queen</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZQ">Bohemian Rhapsod</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J4">The Show Must Go On</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfCY">We Are The Champions</a>
+					<a href= "https://www.youtube.com/watch?v=azdwsXLmrHE">Radio Ga Ga</a>
+					<a href= "https://www.youtube.com/watch?v=HgzGwKwLmgM">Don't Stop Me Now</a>
+					<a href= "https://www.youtube.com/watch?v=-tJYN-eG1zk">We Will Rock You</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytRQ">Écouté plus</a>
+				</div>
+
+				<div class="card daft">
+					<img src="Images/Daft Punk.png">
+					<h2>Daft Punk</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=FGBhQbmPwH8">One More Time</a>
+					<a href= "https://www.youtube.com/watch?v=5NV6Rdv1a3I">Get Lucky</a>
+					<a href= "https://www.youtube.com/watch?v=K0HSD_i2DvA">Around The World</a>
+					<a href= "https://www.youtube.com/watch?v=gAjR4_CbPpQ">Harder, Better, Faster, Stronger</a>
+					<a href= "https://www.youtube.com/watch?v=sFZjqVnWBhc">Robot Rock</a>
+					<a href= "https://www.youtube.com/watch?v=ZbbTmR6Xaag">Contact</a>
+					<a href= "https://www.youtube.com/@daftpunk">Écouté plus</a>
+				</div>
+
+				<div class="card mj">
+					<img src="Images/MJ.png">
+					<h2>Michael Jackson</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=Zi_XLOBDo_Y">Billie Jean</a>
+					<a href= "https://www.youtube.com/watch?v=oRdxUFDoQe0">Beat It</a>
+					<a href= "https://www.youtube.com/watch?v=QNJL6nfu__Q">They Don't Care About Us</a>
+					<a href= "https://www.youtube.com/watch?v=h_D3VFfhvs4">Smooth Criminal</a>
+					<a href= "https://www.youtube.com/watch?v=sOnqjkJTMaA">Thriller</a>
+					<a href= "https://www.youtube.com/watch?v=dsUXAEzaC3Q">Bad</a>
+					<a href= "https://www.youtube.com/@MichaelJackson">Écouté plus</a>
+				</div>
+
+				<div class="card guetta">
+					<img src="Images/David.png">
+					<h2>David Guetta</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=JRfuAukYTKg">Titanium</a>
+					<a href= "https://www.youtube.com/watch?v=90RLzVUuXe4">I'm good blue</a>
+					<a href= "https://www.youtube.com/watch?v=dSDbwfXX5_I">I Don't Wanna Wait</a>
+					<a href= "https://www.youtube.com/watch?v=uO59tfQ2TbA">Hey Mama</a>
+					<a href= "https://www.youtube.com/watch?v=ft4jcPSLJfY">Say My Name</a>
+					<a href= "https://www.youtube.com/watch?v=NUVCQXMUVnI">Memories</a>
+					<a href= "https://www.youtube.com/@davidguetta">Écouté plus</a>
+				</div>
+				
+				<div class="card sabrina">
+					<img src="Images/Sabrina.png">
+					<h2>Sabrina Carpenter</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=eVli-tstM5E">Espresso</a>
+					<a href= "https://www.youtube.com/watch?v=1aMCVgRKcP4">Juno</a>
+					<a href= "https://www.youtube.com/watch?v=z9Q9OzL_wI8">Taste</a>
+					<a href= "https://www.youtube.com/watch?v=x8VkB8ap_FQ">Bed Chem</a>
+					<a href= "https://www.youtube.com/watch?v=cF1Na4AIecM">Please Please Please</a>
+					<a href= "https://www.youtube.com/watch?v=kLbn61Z4LDI">Feather</a>
+					<a href= "https://www.youtube.com/@sabrinacarpenter">Écouté plus</a>
+				</div>
+				
+				<div class="card The">
+					<img src="Images/The.png">
+					<h2>The Weeknd</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fHI8X4OXluQ">Blinding Lights</a>
+					<a href= "https://www.youtube.com/watch?v=S3ncfrQPpjs">The Abyss</a>
+					<a href= "https://www.youtube.com/watch?v=XXYlFuWEuKI">Save Your Tears</a>
+					<a href= "https://www.youtube.com/watch?v=34Na4j8AVgA">Starboy</a>
+					<a href= "https://www.youtube.com/watch?v=qFLhGq0060w">I Feel It Coming</a>
+					<a href= "https://www.youtube.com/watch?v=QLCpqdqeoII">Die For You</a>
+					<a href= "https://www.youtube.com/@TheWeeknd/featured">Écouté plus</a>
+				</div>
+
+			</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<span class="close">&times;</span>
+				<div id="popup-content"></div>
+			</div>
+		</div>
+		
+		<script>
+			const cards = document.querySelectorAll(".card");
+			const overlay = document.getElementById("overlay");
+			const popupContent = document.getElementById("popup-content");
+			const popup = document.querySelector(".popup");
+			const closeBtn = document.querySelector(".close");
+
+			cards.forEach(card=>{
+			card.addEventListener("click",()=>{
+
+			popupContent.innerHTML = card.innerHTML;
+
+
+			popup.className = "popup " + card.className;
+
+			overlay.style.display="flex";
+
+			});
+			});
+
+			closeBtn.addEventListener("click",()=>{
+			overlay.style.display="none";
+			});
+
+			overlay.addEventListener("click",(e)=>{
+			if(e.target===overlay){
+			overlay.style.display="none";
+			}
+			});
+		</script>
+	</body><br>
+	
+	<body><br>
+
+		<link rel="stylesheet" href="Styles/StyleArt.css"/>
+
+		<section class="hero">
+			<div class="hero-text">
+				<h1>5. COMPOSITEURS DU MOMENT</h1>
+			</div>
+		</section>
+	
+	</body>
+	
+		<body>
+	
+		<link rel="stylesheet" href="Styles/Card2.css"/>
+
+			<div class="grid">
+
+				<div class="card Mozart">
+					<img src="Images/Moz.png">
+					<h2>Mozart</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Vivaldi">
+					<img src="Images/Viv.png">
+					<h2>Vivaldi</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card BEE">
+					<img src="Images/Bee.png">
+					<h2>Beethoven</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Hans">
+					<img src="Images/Hans.png">
+					<h2>Hans Zimmer</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Bab">
+					<img src="Images/F1.png">
+					<h2>Bryan Tyler</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card John">
+					<img src="Images/Jhon.png">
+					<h2>John Williams</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+
+			</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<span class="close">&times;</span>
+				<div id="popup-content"></div>
+			</div>
+		</div>
+		
+		<script>
+			const cards = document.querySelectorAll(".card");
+			const overlay = document.getElementById("overlay");
+			const popupContent = document.getElementById("popup-content");
+			const popup = document.querySelector(".popup");
+			const closeBtn = document.querySelector(".close");
+
+			cards.forEach(card=>{
+			card.addEventListener("click",()=>{
+
+			popupContent.innerHTML = card.innerHTML;
+
+
+			popup.className = "popup " + card.className;
+
+			overlay.style.display="flex";
+
+			});
+			});
+
+			closeBtn.addEventListener("click",()=>{
+			overlay.style.display="none";
+			});
+
+			overlay.addEventListener("click",(e)=>{
+			if(e.target===overlay){
+			overlay.style.display="none";
+			}
+			});
+		</script>
+	</body><br>
+
+	<body><br>
+
+		<link rel="stylesheet" href="Styles/StyleArt.css"/>
+
+		<section class="hero">
+			<div class="hero-text">
+				<h1>6. ALBUMS DU MOMENT</h1>
+			</div>
+		</section>
+	
+	</body>
+	
+	<body>
+	
+		<link rel="stylesheet" href="Styles/Card3.css"/>
+
+			<div class="grid">
+
+				<div class="card Alive">
+					<img src="Images/Alive.png">
+					<h2>Alive (2007)</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Th">
+					<img src="Images/Thriller.png">
+					<h2>Thriller (1982)</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Bo">
+					<img src="Images/Bo.png">
+					<h2>Bohemian Rhapsody (1975)</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Hans">
+					<img src="Images/Hans.png">
+					<h2>Hans Zimmer</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card Bab">
+					<img src="Images/F1.png">
+					<h2>Bryan Tyler</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+				
+				<div class="card John">
+					<img src="Images/Jhon.png">
+					<h2>John Williams</h2>
+					<p>Musique les plus connus :<p>
+					<a href= "https://www.youtube.com/watch?v=fJ9rUzIMcZ">...</a>
+					<a href= "https://www.youtube.com/watch?v=t99KH0TR-J">...</a>
+					<a href= "https://www.youtube.com/watch?v=04854XqcfC">...</a>
+					<a href= "https://www.youtube.com/channel/UCiMhD4jzUqG-IgPzUmmytR">Écouté plus</a>
+				</div>
+
+			</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<span class="close">&times;</span>
+				<div id="popup-content"></div>
+			</div>
+		</div>
+		
+		<script>
+			const cards = document.querySelectorAll(".card");
+			const overlay = document.getElementById("overlay");
+			const popupContent = document.getElementById("popup-content");
+			const popup = document.querySelector(".popup");
+			const closeBtn = document.querySelector(".close");
+
+			cards.forEach(card=>{
+			card.addEventListener("click",()=>{
+
+			popupContent.innerHTML = card.innerHTML;
+
+
+			popup.className = "popup " + card.className;
+
+			overlay.style.display="flex";
+
+			});
+			});
+
+			closeBtn.addEventListener("click",()=>{
+			overlay.style.display="none";
+			});
+
+			overlay.addEventListener("click",(e)=>{
+			if(e.target===overlay){
+			overlay.style.display="none";
+			}
+			});
+		</script>
+	</body><br>
+	
+	<body>
+
+		<link rel="stylesheet" href="Styles/StyleBas.css"/>
+			<footer class="footer">
+
+				<div class="footer-container">
+
+					<!-- LOGO -->
+					<div class="footer-logo">
+					<center><h2>SPOTYWICH</h2>
+					<center><p>Humour & créativité</p>
+					<center><img src="Images/Logo gro.png">
+					</div>
+
+					<!-- COLONNE 1 -->
+					<div class="footer-col">
+					<h3>Spotywich</h3>
+					<a href= "SPOTYWICH.html">Accueil</a>
+					<a href="#">À propos</a>
+					<a href="#">Contact</a>
+					<a href="#">Demande</a>
+				</div>
+
+					<!-- COLONNE 2 -->
+				<div class="footer-col">
+					<h3>Catégorie</h3>
+					<a href="#">Artistes</a>
+					<a href="#">Compositeurs</a>
+					<a href="#">Albums</a>
+				</div>
+				
+					<!-- COLONNE 3 -->
+				<div class="footer-col">
+					<h3>Crédit</h3>
+					<a href= "Credit.html">Gabriel Darder</a>
+					<a href="#">Adèle Chapon</a>
+					<a href="#">Visual Studios Code</a>
+				</div>
+				
+					<!-- SOCIAL -->
+				<div class="footer-social">
+					<h3>Suivez-nous</h3>
+						<div class="icons">
+							<a href="https://discord.gg/seUYb9YJg9" target="_blank" class="social-icon">
+								<img src="Images/discord.png" alt="Discord">
+							</a>
+							<a href="https://www.instagram.com/gabriel.d3300/" target="_blank" class="social-icon">
+								<img src="Images/instagram.png" alt="Instagram">
+							</a>
+							<a href="https://x.com/3300Red" target="_blank" class="social-icon">
+								<img src="Images/twitter.png" alt="Twitter">
+							</a>
+							<a href="https://www.youtube.com/channel/UC-65dz_G6HjZbvjQKi2xQsA" target="_blank" class="social-icon">
+								<img src="Images/youtube.png" alt="YouTube">
+							</a>
+						</div>
+				</div>
+	</body>
+
+
+				</div>
+
+			<div class="footer-bottom">
+				© 2026 Spotywich. Tous droits réservés.
+			</div>
+
+		</footer>
+</html>

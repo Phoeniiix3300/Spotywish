@@ -1,0 +1,114 @@
+			body{
+				font-family:'Montserrat',sans-serif;
+				margin:40px;
+			}
+
+			.grid{
+				display:grid;
+				grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+				gap:25px;
+			}
+
+			.card{
+				border-radius:20px;
+				padding:30px;
+				text-align:center;
+				color:white;
+				min-height:320px;
+				box-shadow:0 8px 20px rgba(0,0,0,0.08);
+				transition:0.2s;
+			}
+
+			.card:hover{
+				transform:translateY(-6px);
+			}
+
+			.card img{
+				width:130px;
+				margin-bottom:15px;
+			}
+
+			.card h2{
+				margin:10px 0;
+				font-size:22px;
+			}
+
+			.card p{
+				margin:4px 0;
+				font-size:16px;
+				opacity:0.95;
+			}
+			
+			.card a{
+				color:#000000;
+				text-decoration:none;
+				font-weight:500;
+				transition:color 0.25s ease;
+			}
+			
+			.card a:hover{
+				color:#1ed760;
+			}
+			
+			.card a{
+				display:block;
+				text-align:center;
+			}
+			
+			.card p{
+				text-align:center;
+			}
+			
+			.card h2{
+				text-align:center;
+			}
+
+			.Alive{background:linear-gradient(135deg,#000,#4FC3F7);} 
+			.Th{background:linear-gradient(135deg,#F9A825,#00BFA6);}
+			.Bo{background:linear-gradient(135deg,#FF9EDB,#F9A825);}
+			.iz{background:linear-gradient(135deg,#56ab2f,#a8e063);}
+			.guetta{background:linear-gradient(135deg,#8e2de2,#4a00e0);}
+			.sabrina{background:linear-gradient(135deg,#FF9EDB,#C2185B);}
+			.stro{background:linear-gradient(135deg,#FFFFFF,#ffd200);}
+			.The{background:linear-gradient(135deg,#4FC3F7,#00BFA6);}
+			.Bibi{background:linear-gradient(135deg,#000000,#56ab2f);}
+			.Tame{background:linear-gradient(135deg,#00BFA6,#ffd200);}
+			.Lady{background:linear-gradient(135deg,#C0C0C0,#FF0000);}
+			.Al{background:linear-gradient(135deg,#FF9EDB,#FF0000);}
+			
+			.overlay{
+				position:fixed;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:rgba(0,0,0,0.7);
+				display:none;
+				justify-content:center;
+				align-items:center;
+				z-index:999;
+			}
+			
+			.popup{
+				padding:40px;
+				border-radius:20px;
+				max-width:500px;
+				width:90%;
+				position:relative;
+				animation:zoom 0.3s ease;
+				color:white;
+
+			}
+			
+			@keyframes zoom{
+				from{transform:scale(0.7);opacity:0;}
+				to{transform:scale(1);opacity:1;}
+			}
+			
+			.close{
+				position:absolute;
+				top:10px;
+				right:15px;
+				font-size:28px;
+				cursor:pointer;
+			}
